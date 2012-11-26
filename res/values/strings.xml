@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">Snowflakes_of_Doom</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_front_page">FrontPage</string>
+
+</resources>
