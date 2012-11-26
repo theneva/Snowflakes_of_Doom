@@ -8,13 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/text_view_front_page_hello_world" />
-    
-    <Button
-        android:id="@+id/button_navigate_to_text_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="@string/button_navigate_to_text_activity" />
-    
+        android:text="@string/text_activity"
+        tools:context=".TextActivity" />
+
 </RelativeLayout>
