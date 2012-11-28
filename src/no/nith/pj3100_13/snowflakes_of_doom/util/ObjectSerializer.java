@@ -12,6 +12,8 @@ import java.net.URL;
 
 import javax.xml.parsers.*;
 
+import no.nith.pj3100_13.snowflakes_of_doom.dto.TextDto;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -21,7 +23,7 @@ import org.xml.sax.SAXException;
 
 public class ObjectSerializer {
 	
-	public static <T> T fromXML(String url) {
+	public static TextDto fromXML(String url) {
 		URL xmlUrl = null;
 		HttpURLConnection urlConnection = null;
 		
@@ -46,15 +48,13 @@ public class ObjectSerializer {
 			NodeList nodeListTitle = doc.getElementsByTagName("title");
 
 			nodeListTitle = nodeListTitle.item(0).getChildNodes();
-			System.out.println(((Node)nodeListTitle.item(0)).getNodeValue());
 			
+			String imageUrl = ((Node)nodeListTitle.item(0)).getNodeValue();
 			
 			//Får ut tekst
 			for (int i = 2; i < nodeListP.getLength(); i++) {
 				
 				NodeList nodeList = nodeListP.item(i).getChildNodes();
-				System.out.println(nodeList.getLength());
-				
 				
 				for(int j = 0; j < nodeList.getLength(); j++) {
 					
@@ -67,21 +67,19 @@ public class ObjectSerializer {
 						
 						if (noList.getLength() > 0 && 
 								noList.item(0).getNodeValue() != null) {
-							System.out.println(((Node) noList.item(0)).getNodeValue());
 							sb.append(((Node) noList.item(0)).getNodeValue())
 							.append("\n");
 						}
 						//Henter ut tekst under P taggen som ikke ligger 
 						//under et barn
 					} else if (((Node) nodeList.item(j)).getNodeValue() != null) {
-						System.out.println(((Node) nodeList.item(j)).getNodeValue());
 						sb.append(((Node) nodeList.item(j)).getNodeValue())
 						.append("\n");
 					}
 				}
 			}
 			
-			return (T) sb.toString();
+			return new TextDto(imageUrl, sb.toString());
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
